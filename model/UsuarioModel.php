@@ -12,7 +12,7 @@ class UsuarioModel {
     private $emissor;
     private $conexao;
 
-    public function criar() {
+    public function insert() {
         $sql = "INSERT INTO usuario
                         (
                             rg,
@@ -36,7 +36,7 @@ class UsuarioModel {
         }
     }
     
-    public function listar(){
+    public function select(){
         $sql = 'SELECT * FROM usuario;';             
         $usuarios = array();
         try
