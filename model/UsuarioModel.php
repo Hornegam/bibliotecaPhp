@@ -58,11 +58,7 @@ class UsuarioModel {
         return $usuarios;
     }
 
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 4a4c09994f32986babde02f684a6f137abb21210
 //------------- GETTERS and SETTERS --------------------------------------------    
     function getProntuario() {
         return $this->prontuario;
