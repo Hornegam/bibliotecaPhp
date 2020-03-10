@@ -15,10 +15,10 @@
 //        $conexao->executar("insert into autor(nome)values('nelson')");
         $usuario = new UsuarioModel();
         //$usuario->setProntuario(9003);
-        $usuario->setNome('Beltrano');
-        $usuario->setCpf('12345688912');
-        $usuario->setRg('12345677');
-        $usuario->setSenha('abc');
+        $usuario->setNome('Beltr0000ano');
+        $usuario->setCpf('01234567898');
+        $usuario->setRg('123456786');
+        $usuario->setSenha('a44bc');
         $usuario->setEmissor('SP');
         $usuario->criar();
         $usuario->listar();

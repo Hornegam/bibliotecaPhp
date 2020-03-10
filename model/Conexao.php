@@ -10,7 +10,7 @@ class Conexao {
     private static $instance;
 
     private function __construct() {
-        $this->set("localhost", "biblioteca", "root", "");
+        $this->set("10.10.202.12", "biblioteca", "root", "");
         $this->conectar();
     }
 
