@@ -58,10 +58,7 @@ class UsuarioModel {
         return $usuarios;
     }
 
-    public function atualizar(){
-        $sql = 
-    }
-
+ 
 //------------- GETTERS and SETTERS --------------------------------------------    
     function getProntuario() {
         return $this->prontuario;
