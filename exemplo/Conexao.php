@@ -1,7 +1,7 @@
 <?php
 
 class Conexao {
-
+//teste de commit
     private $senha;
     private $usuario;
     private $base;
@@ -10,7 +10,7 @@ class Conexao {
     private static $instance;
 
     private function __construct() {
-        $this->set("192.168.9.108", "biblioteca", "biblioteca", "biblioteca");
+        $this->set("10.10.202.12", "biblioteca", "root", "");
         $this->conectar();
     }
 
@@ -41,7 +41,7 @@ class Conexao {
     public function executar($sql){
         try {
             if(isset($this->conexao)){
-                $this->conexao->exec($sql);
+                $this->conexao->exec($sql); 
                 echo "inserido";
             }
         } catch (PDOException $e) {
