@@ -1,30 +1,4 @@
-Skip to content
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@DevFigueiredo 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-Hornegam
-/
-bibliotecaPhp
-1
-00
- Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
-bibliotecaPhp/model/UsuarioModel.php / 
-@lucasguto321 lucasguto321 Add files via upload
-cc2400d in 11 minutes
-@Hornegam@DevFigueiredo@lucasguto321
-134 lines (110 sloc)  3.21 KB
-  
-You're using code navigation to jump to definitions or references.
-Learn more or give us feedback
 <?php
 
 include_once 'Conexao.php';
@@ -159,3 +133,4 @@ class UsuarioModel {
     }
 
 }
+ 

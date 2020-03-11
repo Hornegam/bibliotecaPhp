@@ -16,11 +16,11 @@
         $usuario = new UsuarioModel();
         //$usuario->setProntuario(9003);
         $usuario->setNome('Beltrano');
-        $usuario->setCpf('12346188912');
-        $usuario->setRg('11234677');
-        $usuario->setSenha('abc');
+        $usuario->setCpf('18346188912');
+        $usuario->setRg('11434677');
+        $usuario->setSenha('abcuuhhu');
         $usuario->setEmissor('SP');
-        $usuario->insert();
+        $usuario->criar();
         //$usuario->listar();
         ?>
     </body>
