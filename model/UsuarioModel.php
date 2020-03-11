@@ -1,3 +1,4 @@
+
 <?php
 
 include_once 'Conexao.php';
@@ -65,6 +66,7 @@ class UsuarioModel {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+<<<<<<< HEAD
     }
 
     public function delete($id){
@@ -76,6 +78,19 @@ class UsuarioModel {
         }
     }
 
+=======
+    }
+
+    public function delete($id){
+        $sql= "DELETE FROM usuario WHERE prontuario='$id'";
+        try {
+            $this->conexao->executar($sql);            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+>>>>>>> 6437b6703b8cd93af04210a6025012a4434bfc7a
 
 
 //------------- GETTERS and SETTERS --------------------------------------------    
@@ -132,3 +147,4 @@ class UsuarioModel {
     }
 
 }
+ 
