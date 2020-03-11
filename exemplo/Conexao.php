@@ -41,7 +41,7 @@ class Conexao {
     public function executar($sql){
         try {
             if(isset($this->conexao)){
-                $this->conexao->exec($sql);
+                $this->conexao->exec($sql); 
                 echo "inserido";
             }
         } catch (PDOException $e) {

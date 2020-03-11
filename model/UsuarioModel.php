@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6437b6703b8cd93af04210a6025012a4434bfc7a
 <?php
 
 include_once 'Conexao.php';
@@ -132,3 +136,7 @@ class UsuarioModel {
     }
 
 }
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 6437b6703b8cd93af04210a6025012a4434bfc7a
