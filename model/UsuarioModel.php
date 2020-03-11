@@ -58,9 +58,25 @@ class UsuarioModel {
         return $usuarios;
     }
 
-    public function atualizar(){
-        $sql = 
+    public function update($campo, $valor, $id){
+        $sql = "UPDATE usuario SET $campo='$valor' WHERE prontuario='$id'";
+        try {
+            $this->conexao->executar($sql);            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
+
+    public function delete($id){
+        $sql= "DELETE FROM usuario WHERE prontuario='$id'";
+        try {
+            $this->conexao->executar($sql);            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
 
 //------------- GETTERS and SETTERS --------------------------------------------    
     function getProntuario() {
