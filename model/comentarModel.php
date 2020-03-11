@@ -13,16 +13,14 @@ class comentarModel {
     public function criar() {
         $sql = "INSERT INTO comentar
                         (
-                            prontuarioUser,
-                            codLivroCom,
+                            
                             publCom,
                             comentario
                             
                         )
                         VALUES
                         (
-                            '$this->prontuarioUser',
-                            '$this->codLivroCom',
+                            
                             '$this->publCom',
                             '$this->comentario'
                                
@@ -45,16 +43,16 @@ class comentarModel {
                 $comentar->setProntuarioUser($tmp->prontuarioUser);
                 $comentar->setCodLivroCom($tmp->codLivroCom);
                 $comentar->setPublCom($tmp->publCom);
-                $comentar->setComentario($tmp->comentario)
-                array_push($comentarS, $comentar);
+                $comentar->setComentario($tmp->comentario);
+                array_push($usuarioss, $comentar);
             }
         }
         catch(PDOException $e)
         {
             
         }    
-        print_r($comentar);
-        return $comentar;
+        print_r($usuarioss);
+        return $usuarioss;
     }
 
     public function update($campo, $valor, $id, $idlivro){
@@ -67,7 +65,7 @@ class comentarModel {
     }
 
     public function delete($id, $idlivro){
-        $sql= "DELETE FROM comentario WHERE prontuarioUser='$id' and codLivroCom='$idlivro';
+        $sql= "DELETE FROM comentario WHERE prontuarioUser='$id' and codLivroCom='$idlivro'";
         try {
             $this->conexao->executar($sql);            
         } catch (Exception $e) {
@@ -79,10 +77,7 @@ class comentarModel {
 
 //------------- GETTERS and SETTERS --------------------------------------------    
 
-private $codLivroCom;
-    private $prontuarioUser;
-    private $publCom;
-    private $comentario;
+    
 
 
 
@@ -120,10 +115,9 @@ private $codLivroCom;
     }
 
     
-    }
+    
 
     function __construct() {
         $this->conexao = Conexao::getInstance();
     }
-
 }
