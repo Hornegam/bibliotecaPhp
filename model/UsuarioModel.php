@@ -12,7 +12,7 @@ class UsuarioModel {
     private $emissor;
     private $conexao;
 
-    public function insert() {
+    public function criar() {
         $sql = "INSERT INTO usuario
                         (
                             rg,
@@ -36,7 +36,7 @@ class UsuarioModel {
         }
     }
     
-    public function select(){
+    public function listar(){
         $sql = 'SELECT * FROM usuario;';             
         $usuarios = array();
         try
@@ -58,11 +58,26 @@ class UsuarioModel {
         return $usuarios;
     }
 
-<<<<<<< HEAD
- 
-=======
+    public function update($campo, $valor, $id){
+        $sql = "UPDATE usuario SET $campo='$valor' WHERE prontuario='$id'";
+        try {
+            $this->conexao->executar($sql);            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 
->>>>>>> 4a4c09994f32986babde02f684a6f137abb21210
+    public function delete($id){
+        $sql= "DELETE FROM usuario WHERE prontuario='$id'";
+        try {
+            $this->conexao->executar($sql);            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
 //------------- GETTERS and SETTERS --------------------------------------------    
     function getProntuario() {
         return $this->prontuario;
