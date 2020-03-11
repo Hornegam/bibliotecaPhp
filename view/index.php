@@ -16,8 +16,8 @@
         $usuario = new UsuarioModel();
         //$usuario->setProntuario(9003);
         $usuario->setNome('Beltrano');
-        $usuario->setCpf('12345688932');
-        $usuario->setRg('12345632');
+        $usuario->setCpf('82345688932');
+        $usuario->setRg('42345632');
         $usuario->setSenha('abc');
         $usuario->setEmissor('SP');
         $usuario->insert();
