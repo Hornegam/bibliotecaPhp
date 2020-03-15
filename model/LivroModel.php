@@ -7,7 +7,6 @@ class LivroModel {
     private $autor;
     private $publicacao;
     private $genero;
-    public status();
 
     public function criar() {
         $sql = "INSERT INTO livro
