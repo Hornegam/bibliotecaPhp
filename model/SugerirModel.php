@@ -6,8 +6,6 @@ class SugerirModel {
 
 
     public function criar() {
-        $sql = "INSERT INTO status(codEmprStatus, tipoStatus) VALUES ('$codStatus', '$status');";
-        $this->conexao->executar($sql); 
     }
 
     public function listar(){
