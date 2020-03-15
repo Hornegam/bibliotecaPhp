@@ -8,20 +8,19 @@ class StatusModel {
     private $status;
 
 
-    public function criar() {
- $sql = "INSERT INTO `status`(`codEmprStatus`, `tipoStatus`) VALUES ('$this->codStatus', '$this->status');";
-try {
-$this->conexao->executar($sql);            
-} catch (Exception $e) {
-echo $e->getMessage();
-}
-    
+    public function criar($codStatus, $status) {
+        $sql = "INSERT INTO status(codEmprStatus, tipoStatus) VALUES ('$codStatus', '$status');";
+        $this->conexao->executar($sql);            
     }
 
     public function listar(){
+        $sql = "SELECT * FROM status";
+        $this->conexao->executar($sql);            
     }
 
     public function update($campo, $valor, $id){
+        $sql = "UPDATE status SET $campo='$valor' WHERE codEmprStatus='$id'";
+        $this->conexao->executar($sql);            
     }
 
     public function delete($id){
