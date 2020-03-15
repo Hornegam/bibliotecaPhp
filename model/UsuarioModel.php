@@ -48,7 +48,7 @@ class UsuarioModel {
 
                 //Chama a classe agendar
                 $sugerir = new AgendarModel();
-                $sugerir->setProntuarioUserAge(getProntuario());
+                $sugerir->setProntuarioUserAge($this->prontuario);
                 $sugerir->setPublLivroAge($date);
                 $sugerir->setCodLivroAge($livroCod);
 
@@ -71,7 +71,7 @@ class UsuarioModel {
                 $dateEntrega = strtotime("+7 day", $start_date);
                 //Chama a classe emprestar
                 $emprestar = new EmprestarModel();
-                $emprestar->setProntuarioUser(getProntuario());
+                $emprestar->setProntuarioUser($this->prontuario);
                 $emprestar->setCodLivro($livroCod);
                 $emprestar->setDataRet($dateRetirada);
                 $emprestar->setDataDev($dateEntrega);
