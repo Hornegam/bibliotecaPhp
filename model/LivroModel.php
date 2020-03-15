@@ -55,7 +55,7 @@ class LivroModel {
         return $usuarios;
     }
 
-    public function listarLivro($id){
+    public function listarItem($id){
         $sql = "SELECT * FROM livro; WHERE codLivro = $id";             
         $usuarios = array();
         try
