@@ -43,7 +43,8 @@ class LivroModel {
                 $usuario->setAutor($tmp->autor);
                 $usuario->setPublicacao($tmp->publicacao);
                 $usuario->setGenero($tmp->genero);
-                array_push($usuarios, $usuario    );
+                $usuario->setStatus($tmp->fk_status);
+                array_push($usuarios, $usuario);
             }
         }
         catch(PDOException $e)
@@ -66,7 +67,8 @@ class LivroModel {
                 $usuario->setAutor($tmp->autor);
                 $usuario->setPublicacao($tmp->publicacao);
                 $usuario->setGenero($tmp->genero);
-                array_push($usuarios, $usuario);
+                $usuario->setStatus($tmp->fk_status);
+                array_push($usuarios, $usuario    );
             }
         }
         catch(PDOException $e)
@@ -126,6 +128,13 @@ class LivroModel {
 
     function setGenero($genero) {
         $this->genero = $genero;
+    }
+
+    function getStatus($status) {
+        return $this->status;
+    }
+    function setStatus($status) {
+        $this->status = $status;
     }
 
     function __construct() {
