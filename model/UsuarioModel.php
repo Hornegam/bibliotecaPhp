@@ -14,46 +14,46 @@ class UsuarioModel {
     private $senha;
     private $emissor;
     private $conexao;
-    public $agendar;
     
     //Classe Agendar
     public function agendar($livroCod){
-        if(getProntuario() != null){
+        if($this->prontuario != null){
             try{
                 //Pega hora do sistema
                 date_default_timezone_set('America/Sao_Paulo');
-                $date = date('Y/m/d h:i:s a', time());
+                $date = date('Y/m/d');
 
                 //Chama a classe agendar
                 $agendar = new AgendarModel();
-                $agendar->setProntuarioUserAge(getProntuario());
+                $agendar->setProntuarioUserAge($this->prontuario);
                 $agendar->setPublLivroAge($date);
                 $agendar->setCodLivroAge($livroCod);
-
                 //Coloca no banco com as dependencias certas
                 $agendar->criar();
             }catch(Exception $e){
                 echo($e);
             }
+        }else{
+            echo "Deu erro no agendar";
         }
     }
 
     //Precisa Terminar a classe sugerir
     public function sugerir(){
-        if(getProntuario() != null){
+        if($this->prontuario != null){
             try{
                 //Pega hora do sistema
                 date_default_timezone_set('America/Sao_Paulo');
                 $date = date('d/m/Y h:i:s a', time());
 
                 //Chama a classe agendar
-                $agendar = new AgendarModel();
-                $agendar->setProntuarioUserAge(getProntuario());
-                $agendar->setPublLivroAge($date);
-                $agendar->setCodLivroAge($livroCod);
+                $sugerir = new AgendarModel();
+                $sugerir->setProntuarioUserAge(getProntuario());
+                $sugerir->setPublLivroAge($date);
+                $sugerir->setCodLivroAge($livroCod);
 
                 //Coloca no banco com as dependencias certas
-                $agendar->criar();
+                $sugerir->criar();
             }catch(Exception $e){
                 echo($e);
             }
@@ -84,7 +84,7 @@ class UsuarioModel {
         }
     }
 
-    //Classe Comentar
+    //Classe Comentar faltar implementar o criar
     public function comentar($livroCod,$comentario){
         if(getProntuario() != null){
             try{
@@ -158,18 +158,24 @@ class UsuarioModel {
     }
 
     public function listarItem($prontuario){
+        
         $sql = "SELECT * FROM usuario where prontuario = $prontuario;";             
-        $usuarios = array();
+        //$usuarios = array();
         try
-        {
+        {   
             $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
+            
             while($tmp = $rs->fetchObject())            {
-                $usuario = new UsuarioModel();
-                $usuario->setProntuario($tmp->prontuario);
-                $usuario->setNome($tmp->nome);
-                $usuario->setCpf($tmp->cpf);
-                array_push($usuarios, $usuario);
+                
+                //$usuario = new UsuarioModel();
+                $this->prontuario = $tmp->prontuario;
+                $this->nome = $tmp->nome;
+                $this->cpf = $tmp->cpf;
+                $this->rg = $tmp->rg;
+                
+                //array_push($usuarios, $usuario);
             }
+            
         }
         catch(PDOException $e)
         {
