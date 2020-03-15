@@ -5,7 +5,7 @@ include_once 'Conexao.php';
 class SugerirModel {
 
 
-    public function criar() {
+    public function criar($prontuario, $titulo, $autor, $dataPublicacao, $genero) {
         $sql = "INSERT INTO sugerir(prontuarioUser,titulo, autor,publi,genero) VALUES ('$prontuario', '$titulo','$autor','$dataPublicacao','$genero');";
         $this->conexao->executar($sql); 
     }

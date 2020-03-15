@@ -22,6 +22,7 @@
        //$livro = new LivroModel();
        //var_dump($livro->listarLivro(1));
        
+       $sugerir = new SugerirModel();
 
 
        ?>
