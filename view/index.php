@@ -12,7 +12,7 @@
        // include_once '../model/LivroModel.php';
        // include_once '../model/StatusModel.php';
        // include_once '../model/SugerirModel.php';
-       // include_once '../model/UsuarioModel.php';
+        include_once '../model/UsuarioModel.php';
        
        //$status = new StatusModel();
        //$status->criar(4,"Teste");
@@ -22,9 +22,27 @@
        //$livro = new LivroModel();
        //var_dump($livro->listarLivro(1));
        
-       $sugerir = new SugerirModel();
+       //$sugerir = new SugerirModel();
 
-
+        /*
+       private $prontuario;
+       private $rg;
+       private $cpf;
+       private $nome;
+       private $senha;
+       private $emissor;
+       private $conexao;
+        */
+        
+        //Teste Usuario para agendar
+       
+        $user = new UsuarioModel();
+        //listarItem passa por parametro do prontuario, e busca as informações do usuario especifico
+        $user->listarItem(6);
+        $user->agendar(1);
+        //$user->comentar(1,"Ah o livro é muito zica");
+        
+        
        ?>
 
 
