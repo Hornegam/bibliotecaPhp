@@ -2,6 +2,8 @@
 
 include_once 'Conexao.php';
 include_once 'AgendarModel.php';
+include_once 'EmprestarModel.php';
+include_once 'ComentarModel.php';
 
 class UsuarioModel {
 
@@ -14,22 +16,99 @@ class UsuarioModel {
     private $conexao;
     public $agendar;
     
-    public function agendar($livro){
+    //Classe Agendar
+    public function agendar($livroCod){
         if(getProntuario() != null){
             try{
+                //Pega hora do sistema
                 date_default_timezone_set('America/Sao_Paulo');
                 $date = date('Y/m/d h:i:s a', time());
+
+                //Chama a classe agendar
                 $agendar = new AgendarModel();
                 $agendar->setProntuarioUserAge(getProntuario());
                 $agendar->setPublLivroAge($date);
+                $agendar->setCodLivroAge($livroCod);
 
+                //Coloca no banco com as dependencias certas
+                $agendar->criar();
             }catch(Exception $e){
                 echo($e);
             }
-        
-        
         }
     }
+
+    //Precisa Terminar a classe sugerir
+    public function sugerir(){
+        if(getProntuario() != null){
+            try{
+                //Pega hora do sistema
+                date_default_timezone_set('America/Sao_Paulo');
+                $date = date('d/m/Y h:i:s a', time());
+
+                //Chama a classe agendar
+                $agendar = new AgendarModel();
+                $agendar->setProntuarioUserAge(getProntuario());
+                $agendar->setPublLivroAge($date);
+                $agendar->setCodLivroAge($livroCod);
+
+                //Coloca no banco com as dependencias certas
+                $agendar->criar();
+            }catch(Exception $e){
+                echo($e);
+            }
+        }
+    }
+
+    //Classe Emprestar - Falta atualizar a funcao criar da classe emprestar
+    public function emprestar($livroCod){
+        if(getProntuario() != null){
+            try{
+                //Pega hora do sistema para data que o usuario retirou o livro
+                date_default_timezone_set('America/Sao_Paulo');
+                $dateRetirada = date('d/m/Y h:i:s a', time());
+                //Calcula quando o usuario tem que retornar o livro
+                $dateEntrega = strtotime("+7 day", $start_date);
+                //Chama a classe emprestar
+                $emprestar = new EmprestarModel();
+                $emprestar->setProntuarioUser(getProntuario());
+                $emprestar->setCodLivro($livroCod);
+                $emprestar->setDataRet($dateRetirada);
+                $emprestar->setDataDev($dateEntrega);
+
+                //Coloca no banco com as dependencias certas
+                $emprestar->criar();
+            }catch(Exception $e){
+                echo($e);
+            }
+        }
+    }
+
+    //Classe Comentar
+    public function comentar($livroCod,$comentario){
+        if(getProntuario() != null){
+            try{
+                //Pega hora do sistema para data que o usuario retirou o livro
+                date_default_timezone_set('America/Sao_Paulo');
+                $datePubl = date('d/m/Y h:i:s a', time());
+                //Chama a classe comentar
+                $comentar = new ComentarModel();
+                $comentar->setProntuarioUser(getProntuario());
+                $comentar->setCodLivroCom($livroCod);
+                $comentar->setpublCom($datePubl);
+                $comentar->setComentario($comentario);
+
+                //Coloca no banco com as dependencias certas
+                $comentar->criar();
+            }catch(Exception $e){
+                echo($e);
+            }
+        }
+    }
+    
+
+
+
     
  //-------------------------------------Lidar com o Banco de DADOS--------------------------------
     public function criar() {
@@ -78,7 +157,7 @@ class UsuarioModel {
         return $usuarios;
     }
 
-    public function listarUsuario($prontuario){
+    public function listarItem($prontuario){
         $sql = "SELECT * FROM usuario where prontuario = $prontuario;";             
         $usuarios = array();
         try
