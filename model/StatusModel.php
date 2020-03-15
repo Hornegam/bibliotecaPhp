@@ -4,11 +4,7 @@ include_once 'Conexao.php';
 
 class StatusModel {
 
-    private $prontuarioUser;
-    private $codLivro;
-    private $codEmpr;
-    private $dataRet;
-    private $dataDev;
+
 
     public function criar() {
     }
