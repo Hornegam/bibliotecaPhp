@@ -85,7 +85,7 @@ class UsuarioModel {
     }
 
     //Classe Comentar
-    public function comentar($livroCod){
+    public function comentar($livroCod,$comentario){
         if(getProntuario() != null){
             try{
                 //Pega hora do sistema para data que o usuario retirou o livro
@@ -96,6 +96,7 @@ class UsuarioModel {
                 $comentar->setProntuarioUser(getProntuario());
                 $comentar->setCodLivroCom($livroCod);
                 $comentar->setpublCom($datePubl);
+                $comentar->setComentario($comentario);
 
                 //Coloca no banco com as dependencias certas
                 $comentar->criar();
