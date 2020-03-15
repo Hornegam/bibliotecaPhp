@@ -66,7 +66,7 @@ class LivroModel {
                 $usuario->setAutor($tmp->autor);
                 $usuario->setPublicacao($tmp->publicacao);
                 $usuario->setGenero($tmp->genero);
-                array_push($usuarios, $usuario    );
+                array_push($usuarios, $usuario);
             }
         }
         catch(PDOException $e)
