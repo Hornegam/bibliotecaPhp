@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Conexao.php';
+include_once 'AgendarModel.php';
 
 class UsuarioModel {
 
@@ -11,7 +12,26 @@ class UsuarioModel {
     private $senha;
     private $emissor;
     private $conexao;
+    public $agendar;
+    
+    public function agendar($livro){
+        if(getProntuario() != null){
+            try{
+                date_default_timezone_set('America/Sao_Paulo');
+                $date = date('Y/m/d h:i:s a', time());
+                $agendar = new AgendarModel();
+                $agendar->setProntuarioUserAge(getProntuario());
+                $agendar->setPublLivroAge($date);
 
+            }catch(Exception $e){
+                echo($e);
+            }
+        
+        
+        }
+    }
+    
+ //-------------------------------------Lidar com o Banco de DADOS--------------------------------
     public function criar() {
         $sql = "INSERT INTO usuario
                         (
@@ -35,9 +55,31 @@ class UsuarioModel {
             echo $e->getMessage();
         }
     }
-    
+
     public function listar(){
         $sql = 'SELECT * FROM usuario;';             
+        $usuarios = array();
+        try
+        {
+            $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
+            while($tmp = $rs->fetchObject())            {
+                $usuario = new UsuarioModel();
+                $usuario->setProntuario($tmp->prontuario);
+                $usuario->setNome($tmp->nome);
+                $usuario->setCpf($tmp->cpf);
+                array_push($usuarios, $usuario);
+            }
+        }
+        catch(PDOException $e)
+        {
+            
+        }    
+        print_r($usuarios);
+        return $usuarios;
+    }
+
+    public function listarUsuario($prontuario){
+        $sql = "SELECT * FROM usuario where prontuario = $prontuario;";             
         $usuarios = array();
         try
         {
