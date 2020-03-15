@@ -6,6 +6,8 @@ class SugerirModel {
 
 
     public function criar() {
+        $sql = "INSERT INTO sugerir(prontuarioUser,titulo, autor,publi,genero) VALUES ('$prontuario', '$titulo','$autor','$dataPublicacao','$genero');";
+        $this->conexao->executar($sql); 
     }
 
     public function listar(){
