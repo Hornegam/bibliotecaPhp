@@ -25,7 +25,6 @@ class StatusModel {
 
     public function delete($id){
    $sql= "DELETE FROM status WHERE codEmprStatus='$id'";
-
     }
 
 
