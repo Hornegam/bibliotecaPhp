@@ -4,11 +4,6 @@ include_once 'Conexao.php';
 
 class SugerirModel {
 
-    private $prontuarioUser;
-    private $codLivro;
-    private $codEmpr;
-    private $dataRet;
-    private $dataDev;
 
     public function criar() {
     }
