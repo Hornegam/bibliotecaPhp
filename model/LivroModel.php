@@ -31,52 +31,40 @@ class LivroModel {
         }
     }
     
-    public function listar(){
-        $sql = 'SELECT * FROM livro;';             
-        $usuarios = array();
+    public function listar($campo = "*"){
+        $sql = "SELECT $campo FROM livro;";             
+        $items = array();
         try
         {
             $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
-            while($tmp = $rs->fetchObject())            {
-                $usuario = new LivroModel();
-                $usuario->setTitulo($tmp->titulo);
-                $usuario->setAutor($tmp->autor);
-                $usuario->setPublicacao($tmp->publicacao);
-                $usuario->setGenero($tmp->genero);
-                $usuario->setStatus($tmp->fk_status);
-                array_push($usuarios, $usuario);
-            }
+            $items = $rs->fetchAll();          
         }
         catch(PDOException $e)
         {
             
         }    
-        print_r($usuarios);
-        return $usuarios;
+        print_r($items);
+        return $items;
     }
 
     public function listarItem($id){
-        $sql = "SELECT * FROM livro; WHERE codLivro = $id";             
+        $sql = "SELECT * FROM livro LEFT JOIN status on livro.fk_status = status.CodEmprStatus WHERE codLivro = $id";             
         $usuarios = array();
         try
         {
             $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
             while($tmp = $rs->fetchObject())            {
-                $usuario = new LivroModel();
-                $usuario->setTitulo($tmp->titulo);
-                $usuario->setAutor($tmp->autor);
-                $usuario->setPublicacao($tmp->publicacao);
-                $usuario->setGenero($tmp->genero);
-                $usuario->setStatus($tmp->fk_status);
-                array_push($usuarios, $usuario    );
+                LivroModel::setTitulo($tmp->titulo);
+                LivroModel::setAutor($tmp->autor);
+                LivroModel::setPublicacao($tmp->publicacao);
+                LivroModel::setGenero($tmp->genero);
+                LivroModel::setStatus($tmp->fk_status);
             }
         }
         catch(PDOException $e)
         {
             
         }    
-        print_r($usuarios);
-        return $usuarios;
     }
 
 
