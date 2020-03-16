@@ -15,28 +15,41 @@ class StatusModel {
 
     public function listar(){
         $sql = "SELECT * FROM status";
-        $usuarios = array();
+        $Allstatus = array();
         try
         {
             $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
-            while($tmp = $rs->fetchObject())            {
-                $usuario = new LivroModel();
-                $usuario->setTitulo($tmp->titulo);
-                $usuario->setAutor($tmp->autor);
-                $usuario->setPublicacao($tmp->publicacao);
-                $usuario->setGenero($tmp->genero);
-                $usuario->setStatus($tmp->fk_status);
-                array_push($usuarios, $usuario    );
-            }
+            $Allstatus = $rs->fetchObject();
         }
         catch(PDOException $e)
         {
             
         }    
-        print_r($usuarios);
-        return $usuarios;
+        return $Allstatus;
         
     }
+
+    public function listarItem($id){
+        $sql = "SELECT * FROM status where CodEmprStatus=$id";
+        try
+        {
+            $rs = $this->conexao->carregar($sql); //recebe a tabela bruta RESULTSET
+            while($tmp = $rs->fetchObject())            {
+                 StatusModel::setCodStatus($tmp->codEmprStatus);
+                 StatusModel::setTipoStatus($tmp->tipoStatus);
+                
+                }
+        }
+        catch(PDOException $e)
+        {
+     echo "Deu ruim ai viado";       
+        }    
+        
+    }
+
+
+
+
 
     public function update($campo, $valor, $id){
         $sql = "UPDATE status SET $campo='$valor' WHERE codEmprStatus='$id'";
@@ -48,19 +61,20 @@ class StatusModel {
     }
 
 
+//GETS e SETS do Código do Status
     function setCodStatus($codStatus){
     $this->codStatus = $codStatus;
     }
     function getCodStatus(){
         return $this->codStatus;
     }
-
+//GETS e SETS do Tipo do Status
     function setTipoStatus($status){
         $this->status = $status;
-        }
-        function getTipoStatus(){
+    }
+    function getTipoStatus(){
             return $this->status;
-        }
+    }
     
 
 function __construct() {
