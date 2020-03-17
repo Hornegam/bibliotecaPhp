@@ -14,13 +14,14 @@ class comentarModel {
         $sql = "INSERT INTO comentar
                         (
                             
+                            codLivroCom
                             publCom,
                             comentario
                             
                         )
                         VALUES
                         (
-                            
+                            '$this->codLivroCom'
                             '$this->publCom',
                             '$this->comentario'
                                
