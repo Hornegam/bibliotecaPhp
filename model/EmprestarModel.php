@@ -13,11 +13,15 @@ class EmprestarModel {
     public function criar() {
         $sql = "INSERT INTO emprestar
                         (
+                            prontuarioUser,
+                            codLivro,
                             dataRet,
                             dataDev,
                         )
                         VALUES
                         (
+                            '$this->ProntuarioUser,
+                            '$this->codLivro,
                             '$this->dataRet',
                             '$this->dataDev',   
                         );";
